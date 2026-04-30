@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Usama Ashraf — Unity Game Developer</title>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
@@ -1727,7 +1728,7 @@
     </div>
 
     <div class="reveal">
-      <form class="contact-form" id="contactForm" action="https://formspree.io/f/mbdwrbly" method="POST">
+      <form class="contact-form" id="contactForm">
         <div class="form-group">
           <label>Your Name</label>
           <input type="text" name="name" placeholder="John Doe" required>
@@ -1875,25 +1876,32 @@
 
   document.querySelectorAll('.reveal, .timeline-item').forEach(el => observer.observe(el));
 
-  // FORM — Formspree integration
-  document.getElementById('contactForm').addEventListener('submit', async function(e) {
+  // EMAILJS
+  emailjs.init('3M8kOvjR9wV1jxxAi');
+
+  document.getElementById('contactForm').addEventListener('submit', function(e) {
     e.preventDefault();
     const btn = this.querySelector('.btn-submit');
     const success = document.getElementById('form-success');
     const error = document.getElementById('form-error');
-    
+
     btn.textContent = 'Sending...';
     btn.disabled = true;
     error.style.display = 'none';
+    success.style.display = 'none';
 
-    try {
-      const res = await fetch('https://formspree.io/f/mbdwrbly', {
-        method: 'POST',
-        headers: { 'Accept': 'application/json' },
-        body: new FormData(this)
-      });
+    const templateParams = {
+      from_name:  this.querySelector('[name="name"]').value,
+      name:       this.querySelector('[name="name"]').value,
+      from_email: this.querySelector('[name="email"]').value,
+      email:      this.querySelector('[name="email"]').value,
+      subject:    this.querySelector('[name="subject"]').value,
+      title:      this.querySelector('[name="subject"]').value,
+      message:    this.querySelector('[name="message"]').value,
+    };
 
-      if (res.ok) {
+    emailjs.send('service_0vc3psr', 'template_2doyfam', templateParams)
+      .then(() => {
         btn.textContent = '✓ Sent!';
         success.style.display = 'block';
         this.reset();
@@ -1902,16 +1910,13 @@
           btn.disabled = false;
           success.style.display = 'none';
         }, 5000);
-      } else {
-        const data = await res.json();
-        throw new Error(data?.errors?.[0]?.message || 'Failed to send');
-      }
-    } catch (err) {
-      btn.textContent = 'Send Message →';
-      btn.disabled = false;
-      error.style.display = 'block';
-      setTimeout(() => { error.style.display = 'none'; }, 5000);
-    }
+      })
+      .catch(() => {
+        btn.textContent = 'Send Message →';
+        btn.disabled = false;
+        error.style.display = 'block';
+        setTimeout(() => { error.style.display = 'none'; }, 5000);
+      });
   });
 
   // COUNTER ANIMATION
