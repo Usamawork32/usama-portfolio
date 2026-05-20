@@ -764,6 +764,107 @@
     color: var(--accent3);
   }
   .project-btn.github:hover { background: rgba(127,255,107,0.18); }
+
+  /* SCREENSHOT GALLERY */
+  .ss-gallery {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 5px;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 14px;
+    aspect-ratio: 16/9;
+    position: relative;
+    cursor: pointer;
+  }
+  .ss-gallery img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease, filter 0.3s ease;
+    filter: brightness(0.88);
+  }
+  .ss-gallery:hover img { filter: brightness(1); }
+  .ss-gallery img:hover { transform: scale(1.04); z-index: 1; }
+  .ss-gallery-label {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    background: rgba(0,0,0,0.65);
+    color: var(--accent);
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-family: 'Space Mono', monospace;
+    pointer-events: none;
+    z-index: 2;
+  }
+  /* 2-image gallery variant — side by side */
+  .ss-gallery-2 {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    aspect-ratio: 16/5;
+  }
+
+  /* LIGHTBOX */
+  .ss-lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.92);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .ss-lightbox.open { display: flex; }
+  .ss-lightbox img {
+    max-width: 90vw;
+    max-height: 78vh;
+    border-radius: 8px;
+    box-shadow: 0 0 60px rgba(0,229,255,0.2);
+    object-fit: contain;
+  }
+  .ss-lightbox-nav {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
+  .ss-lightbox-nav button {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: #fff;
+    padding: 8px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background 0.2s;
+  }
+  .ss-lightbox-nav button:hover { background: rgba(0,229,255,0.25); }
+  .ss-lightbox-close {
+    position: absolute;
+    top: 18px; right: 24px;
+    font-size: 28px;
+    color: #fff;
+    cursor: pointer;
+    background: none;
+    border: none;
+    line-height: 1;
+    opacity: 0.7;
+  }
+  .ss-lightbox-close:hover { opacity: 1; }
+  .ss-lightbox-counter {
+    color: rgba(255,255,255,0.5);
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 1px;
+  }
+
   /* EDUCATION */
   .edu-card {
     background: var(--surface);
@@ -1491,6 +1592,16 @@
       <div class="project-num">01</div>
       <div class="project-tag">Unity · Mobile · 3D</div>
       <div class="project-title">Crime & Gangster Simulator</div>
+
+      <!-- 4-Screenshot Gallery -->
+      <div class="ss-gallery" onclick="openLightbox('crime', 0)" title="Click to view screenshots">
+        <span class="ss-gallery-label">📸 Screenshots</span>
+        <img src="Crime-1.jpg" alt="Crime & Gangster Simulator - Gang shootout outside drugstore in open world city">
+        <img src="Crime-2.jpg" alt="Crime & Gangster Simulator - Alley gunfight with multiple NPC gangsters">
+        <img src="Crime-3.jpg" alt="Crime & Gangster Simulator - Mobile gameplay UI with cover-based combat against police">
+        <img src="Crime-4.jpg" alt="Crime & Gangster Simulator - Crime boss overseeing train heist in snowy forest">
+      </div>
+
       <p class="project-desc">
         Open-world 3D crime simulation game featuring NPC AI, RCC vehicles, minimap system and AdMob monetization.
       </p>
@@ -1509,6 +1620,16 @@
       <div class="project-num">02</div>
       <div class="project-tag">Unity · Survival</div>
       <div class="project-title">Big Foot</div>
+
+      <!-- 4-Screenshot Gallery -->
+      <div class="ss-gallery" onclick="openLightbox('bigfoot', 0)" title="Click to view screenshots">
+        <span class="ss-gallery-label">📸 Screenshots</span>
+        <img src="BigFoot_1.jpg" alt="Big Foot game - Bigfoot creature near campfire cabin at night">
+        <img src="BigFoot_2.jpg" alt="Big Foot game - First person view confronting Bigfoot with shotgun">
+        <img src="BigFoot_3.jpg" alt="Big Foot game - Sniper scope targeting Bigfoot in forest">
+        <img src="BigFoot_4.jpg" alt="Big Foot game - Bigfoot attacking player on the ground in forest">
+      </div>
+
       <p class="project-desc">
         Survival adventure game with exploration, stealth mechanics, AI creature behavior and open-world systems.
       </p>
@@ -1525,6 +1646,16 @@
       <div class="project-num">03</div>
       <div class="project-tag">Unity · Simulation</div>
       <div class="project-title">Bum Simulator</div>
+
+      <!-- 2-Screenshot Gallery -->
+      <div class="ss-gallery" onclick="openLightbox('bumsim', 0)" title="Click to view screenshots">
+        <span class="ss-gallery-label">📸 Screenshots</span>
+        <img src="BumSim_1.png" alt="Bum Simulator - Dark alley at night with shopping cart and neon signs">
+        <img src="BumSim_2.jpg" alt="Bum Simulator - First-person street fight scene in open world city">
+        <img src="BumSim_3.jpg" alt="Bum Simulator - Fighting police officers on city street near motel">
+        <img src="BumSim_4.png" alt="Bum Simulator - Bum exploring city street holding cup near motel and sushi bar">
+      </div>
+
       <p class="project-desc">
         Open-world survival simulation with NPC interaction, upgrades, and resource systems.
       </p>
@@ -1541,6 +1672,16 @@
       <div class="project-num">04</div>
       <div class="project-tag">Unity · Stealth</div>
       <div class="project-title">Barry’s Prison Escape</div>
+
+      <!-- 4-Screenshot Gallery -->
+      <div class="ss-gallery" onclick="openLightbox('barry', 0)" title="Click to view screenshots">
+        <span class="ss-gallery-label">📸 Screenshots</span>
+        <img src="barry_1.png" alt="Barry's Prison Escape - Cartoon police guard with baton in front of prison cell">
+        <img src="barry_2.png" alt="Barry's Prison Escape - Character running from giant lava boulder in stone corridor">
+        <img src="barry_3.png" alt="Barry's Prison Escape - Character crossing rope bridge over lava pit with torches">
+        <img src="barry_4.png" alt="Barry's Prison Escape - Platforming escape over spikes with arrow guide">
+      </div>
+
       <p class="project-desc">
         Stealth escape game with AI guards, puzzles and interactive prison environments.
       </p>
@@ -1557,6 +1698,16 @@
       <div class="project-num">05</div>
       <div class="project-tag">Unity · VR</div>
       <div class="project-title">Badminton VR</div>
+
+      <!-- 4-Screenshot Gallery -->
+      <div class="ss-gallery" onclick="openLightbox('badminton', 0)" title="Click to view screenshots">
+        <span class="ss-gallery-label">📸 Screenshots</span>
+        <img src="Badminton_1.png" alt="Badminton VR - Close-up of racket hitting shuttlecock on indoor court with crowd">
+        <img src="Badminton_2.png" alt="Badminton VR - Player jumping smash shot over net with stadium crowd">
+        <img src="Badminton_3.png" alt="Badminton VR - First-person VR view of serving shuttlecock against opponent at net">
+        <img src="Badminton_4.png" alt="Badminton VR - Player in ready stance on court with scoreboard showing Player 01 vs 02">
+      </div>
+
       <p class="project-desc">
         VR sports game with realistic physics, racket control and opponent AI.
       </p>
@@ -1573,6 +1724,16 @@
       <div class="project-num">06</div>
       <div class="project-tag">Unity · Simulation</div>
       <div class="project-title">Card Shop Simulator</div>
+
+      <!-- 4-Screenshot Gallery -->
+      <div class="ss-gallery" onclick="openLightbox('cardshop', 0)" title="Click to view screenshots">
+        <span class="ss-gallery-label">📸 Screenshots</span>
+        <img src="Card_1.jpg" alt="Card Shop Simulator - Cashier checkout scene with trading cards and customer AI">
+        <img src="Card_2.jpg" alt="Card Shop Simulator - Card Shop storefront exterior with NPC customers walking in">
+        <img src="Card_3.jpg" alt="Card Shop Simulator - Female shopkeeper at counter with card inventory shelves">
+        <img src="Card_4.jpg" alt="Card Shop Simulator - Customers playing trading cards at tables inside the shop">
+      </div>
+
       <p class="project-desc">
         Shop management system with inventory, pricing and customer AI.
       </p>
@@ -1592,6 +1753,16 @@
       <div class="project-num">07</div>
       <div class="project-tag">Unity · Simulation</div>
       <div class="project-title">Grocery Superstore</div>
+
+      <!-- 4-Screenshot Gallery -->
+      <div class="ss-gallery" onclick="openLightbox('grocery', 0)" title="Click to view screenshots">
+        <span class="ss-gallery-label">📸 Screenshots</span>
+        <img src="GroceryStore_1.png" alt="Grocery Superstore - Low-poly open world city street with NPC characters at sunset">
+        <img src="GroceryStore_2.png" alt="Grocery Superstore - Customers shopping in supermarket aisle with cheese and milk products">
+        <img src="GroceryStore_3.png" alt="Grocery Superstore - Store shelf fully stocked with chips, cereals and beverages">
+        <img src="GroceryStore_4.png" alt="Grocery Superstore - Price setting UI showing egg buying price profit and competitive price">
+      </div>
+
       <p class="project-desc">
         Supermarket simulation with stocking, cashier system and AI customers.
       </p>
@@ -1612,6 +1783,16 @@
       <div class="project-num">08</div>
       <div class="project-tag">Unity · Mining</div>
       <div class="project-title">Gold Rush Simulator</div>
+
+      <!-- 4-Screenshot Gallery -->
+      <div class="ss-gallery" onclick="openLightbox('goldrush', 0)" title="Click to view screenshots">
+        <span class="ss-gallery-label">📸 Screenshots</span>
+        <img src="GoldRush_1.jpg" alt="Gold Rush Simulator - Mining store with black truck and forklift warehouse">
+        <img src="GoldRush_2.jpg" alt="Gold Rush Simulator - Gold panning area with sluice box and river stream">
+        <img src="GoldRush_3.jpg" alt="Gold Rush Simulator - Player holding gold bar outside bank building">
+        <img src="GoldRush_4.jpg" alt="Gold Rush Simulator - Open pit mine with excavator and dump truck">
+      </div>
+
       <p class="project-desc">
         Mining simulation with progression, upgrades and economy system.
       </p>
@@ -1628,6 +1809,16 @@
       <div class="project-num">09</div>
       <div class="project-tag">Unity · Casual</div>
       <div class="project-title">I Am Cat</div>
+
+      <!-- 4-Screenshot Gallery -->
+      <div class="ss-gallery" onclick="openLightbox('iamcat', 0)" title="Click to view screenshots">
+        <span class="ss-gallery-label">📸 Screenshots</span>
+        <img src="Cat_1.jpg" alt="I Am Cat - First-person cat view confronting old man with frying pan in kitchen">
+        <img src="Cat_2.jpg" alt="I Am Cat - Cat first-person view of grandma sitting on sofa in living room">
+        <img src="Cat_3.jpg" alt="I Am Cat - Orange cat paws reaching toward aquarium fish tank">
+        <img src="Cat_4.jpg" alt="I Am Cat - Cat playing whack-a-mole mini game with kittens popping out">
+      </div>
+
       <p class="project-desc">
         Sandbox cat life simulation with exploration and interaction systems.
       </p>
@@ -1638,11 +1829,47 @@
       </div>
     </div>
 
-    <!-- 10 -->
+    <!--10 — I Am Dog -->
     <div class="project-card">
       <div class="project-num">10</div>
+      <div class="project-tag">Unity · Casual</div>
+      <div class="project-title">I Am Dog</div>
+
+      <!-- 4-Screenshot Gallery -->
+      <div class="ss-gallery" onclick="openLightbox('iamdog', 0)" title="Click to view screenshots">
+        <span class="ss-gallery-label">📸 Screenshots</span>
+        <img src="Dog_1.jpg" alt="I Am Dog - First-person dog view of angry grandma with rolling pin in kitchen">
+        <img src="Dog_2.jpg" alt="I Am Dog - Dog paws reaching for mini basketball hoop on wall">
+        <img src="Dog_3.jpg" alt="I Am Dog - Dog exploring kitchen counter with food items and utensils">
+        <img src="Dog_4.jpg" alt="I Am Dog - Dog paws grabbing a toaster on kitchen counter">
+      </div>
+
+      <p class="project-desc">
+        Sandbox dog life simulation — explore the house, interact with NPCs and cause mischief as a first-person dog.
+      </p>
+
+      <div class="project-tech">
+        <span class="tag">Unity</span>
+        <span class="tag">C#</span>
+        <span class="tag">Simulation</span>
+      </div>
+    </div>
+
+    <!-- 11 -->
+    <div class="project-card">
+      <div class="project-num">11</div>
       <div class="project-tag">Unity · Puzzle</div>
       <div class="project-title">A Little to Left</div>
+
+      <!-- 4-Screenshot Gallery -->
+      <div class="ss-gallery" onclick="openLightbox('alittle', 0)" title="Click to view screenshots">
+        <span class="ss-gallery-label">📸 Screenshots</span>
+        <img src="level_4_Reference.jpg" alt="A Little to Left - Shape sorting puzzle board with geometric pieces on wood">
+        <img src="Trick_3.png" alt="A Little to Left - Ice cream sorting puzzle with colorful popsicles">
+        <img src="Level_19-02.jpg" alt="A Little to Left - Colorful ring stacking abacus counting puzzle">
+        <img src="Level_15-01.jpg" alt="A Little to Left - Kitchen utensils arrangement puzzle with floating items">
+      </div>
+
       <p class="project-desc">
         45-level puzzle game with logic-based challenges and object interaction.
       </p>
@@ -1653,11 +1880,47 @@
       </div>
     </div>
 
-    <!-- 11 -->
+    <!-- 12 — Lawn Mower Simulator -->
     <div class="project-card">
-      <div class="project-num">11</div>
+      <div class="project-num">12</div>
+      <div class="project-tag">Unity · Simulation</div>
+      <div class="project-title">Lawn Mower Simulator</div>
+
+      <!-- 4-Screenshot Gallery -->
+      <div class="ss-gallery" onclick="openLightbox('lawnmower', 0)" title="Click to view screenshots">
+        <span class="ss-gallery-label">📸 Screenshots</span>
+        <img src="LawnMover_1.png" alt="Lawn Mower Simulator - Ride-on mower in front of brown suburban house with tall green grass">
+        <img src="LawnMover_2.png" alt="Lawn Mower Simulator - Red lawn mower in yard of two-storey house with flower garden">
+        <img src="LawnMover_3.png" alt="Lawn Mower Simulator - Red mower cutting grass in front of grey house on quiet street">
+        <img src="LawnMover_4.png" alt="Lawn Mower Simulator - Red tractor mowing large green field from aerial view">
+      </div>
+
+      <p class="project-desc">
+        Realistic lawn mowing simulation — cut grass, clean yards, manage different areas and equipment across varied environments.
+      </p>
+
+      <div class="project-tech">
+        <span class="tag">Unity</span>
+        <span class="tag">C#</span>
+        <span class="tag">Simulation</span>
+      </div>
+    </div>
+
+    <!-- 13 -->
+    <div class="project-card">
+      <div class="project-num">13</div>
       <div class="project-tag">Unity · Sandbox</div>
       <div class="project-title">People Playground</div>
+
+      <!-- 4-Screenshot Gallery -->
+      <div class="ss-gallery" onclick="openLightbox('peopleplay', 0)" title="Click to view screenshots">
+        <span class="ss-gallery-label">📸 Screenshots</span>
+        <img src="PeoplePlayground_1.png" alt="People Playground - Two ragdoll figures sword fighting with light saber effect">
+        <img src="PeoplePlayground_2.png" alt="People Playground - Ragdoll figure being shot by multiple guns with explosion effect">
+        <img src="PeoplePlayground_3.png" alt="People Playground - Ragdoll falling into lava pit with skeleton destruction">
+        <img src="PeoplePlayground_4.png" alt="People Playground - Ragdolls shooting laser beams at each other in sandbox environment">
+      </div>
+
       <p class="project-desc">
         Physics sandbox with ragdoll systems, weapons and destruction mechanics.
       </p>
@@ -1672,11 +1935,21 @@
   </div>
     </div>
 
-    <!-- 12 -->
+    <!-- 14 -->
     <div class="project-card">
-      <div class="project-num">12</div>
+      <div class="project-num">14</div>
       <div class="project-tag">Unity · Racing</div>
       <div class="project-title">Car Racing Simulator</div>
+
+      <!-- 4-Screenshot Gallery -->
+      <div class="ss-gallery" onclick="openLightbox('carracing', 0)" title="Click to view screenshots">
+        <span class="ss-gallery-label">📸 Screenshots</span>
+        <img src="city_crash.png" alt="Car Racing Simulator - City crash scene with burning cars and police vehicle">
+        <img src="crane.png" alt="Car Racing Simulator - Excavator crane lifting a red truck on a mountain road">
+        <img src="Desert.png" alt="Car Racing Simulator - Yellow pickup truck racing through desert at sunset">
+        <img src="SS_desert.png" alt="Car Racing Simulator - Ambulance at desert road closed scene with burning car">
+      </div>
+
       <p class="project-desc">
         Realistic driving simulation with RCC, AI traffic and mobile optimization.
       </p>
@@ -1692,19 +1965,50 @@
   </div>
     </div>
 
-    <!-- 13 -->
+    <!-- 15 — Prison Simulator -->
     <div class="project-card">
-      <div class="project-num">13</div>
+      <div class="project-num">15</div>
+      <div class="project-tag">Unity · Simulation</div>
+      <div class="project-title">Prison Simulator</div>
+
+      <!-- 4-Screenshot Gallery -->
+      <div class="ss-gallery" onclick="openLightbox('prison', 0)" title="Click to view screenshots">
+        <span class="ss-gallery-label">📸 Screenshots</span>
+        <img src="Prison_1.jpg" alt="Prison Simulator - Prison yard fight between inmates and a guard with watchtower">
+        <img src="Prison_2.jpg" alt="Prison Simulator - Open prison yard with orange-suited inmates and guard on patrol">
+        <img src="Prison_3.jpg" alt="Prison Simulator - Guard counting inmates walking through cell block corridor">
+        <img src="Prison_4.jpg" alt="Prison Simulator - First-person guard using pepper spray on inmate in workshop room">
+      </div>
+
+      <p class="project-desc">
+        Prison management simulation — control guards, manage inmates, enforce rules and handle prison events as a correctional officer.
+      </p>
+
+      <div class="project-tech">
+        <span class="tag">Unity</span>
+        <span class="tag">C#</span>
+        <span class="tag">AI</span>
+        <span class="tag">Simulation</span>
+      </div>
+    </div>
+
+    <!-- 16 -->
+    <div class="project-card">
+      <div class="project-num">16</div>
       <div class="project-tag">ML · Web</div>
       <div class="project-title">Soil Texture Classifier</div>
       <p class="project-desc">
-        ML web app using Naive Bayes, Neural Networks and Random Forest.
+        A machine learning web application that classifies soil textures (Sandy, Loamy, Clayey) from input features using three trained models — Naive Bayes, Neural Network, and Random Forest — with accuracy comparison and a clean Flask-powered UI.
       </p>
 
       <div class="project-tech">
         <span class="tag">Python</span>
         <span class="tag">ML</span>
         <span class="tag">Flask</span>
+        <span class="tag">Naive Bayes</span>
+        <span class="tag">Neural Network</span>
+        <span class="tag">Random Forest</span>
+        <span class="tag">scikit-learn</span>
       </div>
     </div>
 
@@ -2019,6 +2323,160 @@
     });
   });
 
+</script>
+
+<!-- SCREENSHOT LIGHTBOX -->
+<div class="ss-lightbox" id="ss-lightbox" role="dialog" aria-label="Screenshot viewer">
+  <button class="ss-lightbox-close" onclick="closeLightbox()" aria-label="Close">&times;</button>
+  <img id="ss-lightbox-img" src="" alt="Game screenshot">
+  <div class="ss-lightbox-nav">
+    <button onclick="lightboxPrev()" aria-label="Previous">&#8592;</button>
+    <span class="ss-lightbox-counter" id="ss-lightbox-counter">1 / 4</span>
+    <button onclick="lightboxNext()" aria-label="Next">&#8594;</button>
+  </div>
+</div>
+
+<script>
+  const galleries = {
+    bigfoot: ['BigFoot_1.jpg','BigFoot_2.jpg','BigFoot_3.jpg','BigFoot_4.jpg'],
+    bumsim: ['BumSim_1.png','BumSim_2.jpg','BumSim_3.jpg','BumSim_4.png'],
+    barry:  ['barry_1.png','barry_2.png','barry_3.png','barry_4.png'],
+    crime:      ['Crime-1.jpg','Crime-2.jpg','Crime-3.jpg','Crime-4.jpg'],
+    carracing:  ['city_crash.png','crane.png','Desert.png','SS_desert.png'],
+    alittle:    ['level_4_Reference.jpg','Trick_3.png','Level_19-02.jpg','Level_15-01.jpg'],
+    cardshop:   ['Card_1.jpg','Card_2.jpg','Card_3.jpg','Card_4.jpg'],
+    iamcat:     ['Cat_1.jpg','Cat_2.jpg','Cat_3.jpg','Cat_4.jpg'],
+    goldrush:   ['GoldRush_1.jpg','GoldRush_2.jpg','GoldRush_3.jpg','GoldRush_4.jpg'],
+    iamdog:     ['Dog_1.jpg','Dog_2.jpg','Dog_3.jpg','Dog_4.jpg'],
+    grocery:    ['GroceryStore_1.png','GroceryStore_2.png','GroceryStore_3.png','GroceryStore_4.png'],
+    prison:     ['Prison_1.jpg','Prison_2.jpg','Prison_3.jpg','Prison_4.jpg'],
+    badminton:   ['Badminton_1.png','Badminton_2.png','Badminton_3.png','Badminton_4.png'],
+    peopleplay:  ['PeoplePlayground_1.png','PeoplePlayground_2.png','PeoplePlayground_3.png','PeoplePlayground_4.png'],
+  };
+  const alts = {
+    bigfoot: [
+      'Big Foot - Bigfoot creature lurking near campfire cabin at night',
+      'Big Foot - First-person confrontation with Bigfoot armed with shotgun',
+      'Big Foot - Sniper scope view targeting Bigfoot in dark forest',
+      'Big Foot - Bigfoot attacking a player on the ground in forest'
+    ],
+    bumsim: [
+      'Bum Simulator - Dark alley at night with shopping cart and neon signs',
+      'Bum Simulator - First-person street fight scene in open world city',
+      'Bum Simulator - Fighting police officers on city street near motel',
+      'Bum Simulator - Bum exploring city street holding cup near motel and sushi bar'
+    ],
+    barry: [
+      "Barry's Prison Escape - Cartoon police guard with baton in front of prison cell",
+      "Barry's Prison Escape - Character running from giant lava boulder in stone corridor",
+      "Barry's Prison Escape - Character crossing rope bridge over lava pit with torches",
+      "Barry's Prison Escape - Platforming escape over spikes with arrow guide"
+    ],
+    crime: [
+      'Crime & Gangster Simulator - Gang shootout outside drugstore in open world city',
+      'Crime & Gangster Simulator - Alley gunfight with multiple NPC gangsters',
+      'Crime & Gangster Simulator - Mobile gameplay UI with cover-based combat against police',
+      'Crime & Gangster Simulator - Crime boss overseeing train heist in snowy forest'
+    ],
+    carracing: [
+      'Car Racing Simulator - City crash scene with burning cars and police vehicle',
+      'Car Racing Simulator - Excavator crane lifting a red truck on a mountain road',
+      'Car Racing Simulator - Yellow pickup truck racing through desert at sunset',
+      'Car Racing Simulator - Ambulance at desert road closed scene with burning car'
+    ],
+    alittle: [
+      'A Little to Left - Shape sorting puzzle board with geometric pieces on wood',
+      'A Little to Left - Ice cream sorting puzzle with colorful popsicles',
+      'A Little to Left - Colorful ring stacking abacus counting puzzle',
+      'A Little to Left - Kitchen utensils arrangement puzzle with floating items'
+    ],
+    cardshop: [
+      'Card Shop Simulator - Cashier checkout scene with trading cards and customer AI',
+      'Card Shop Simulator - Card Shop storefront exterior with NPC customers walking in',
+      'Card Shop Simulator - Female shopkeeper at counter with card inventory shelves',
+      'Card Shop Simulator - Customers playing trading cards at tables inside the shop'
+    ],
+    iamcat: [
+      'I Am Cat - First-person cat view confronting old man with frying pan in kitchen',
+      'I Am Cat - Cat first-person view of grandma sitting on sofa in living room',
+      'I Am Cat - Orange cat paws reaching toward aquarium fish tank',
+      'I Am Cat - Cat playing whack-a-mole mini game with kittens popping out'
+    ],
+    goldrush: [
+      'Gold Rush Simulator - Mining store with black truck and forklift warehouse',
+      'Gold Rush Simulator - Gold panning area with sluice box and river stream',
+      'Gold Rush Simulator - Player holding gold bar outside bank building',
+      'Gold Rush Simulator - Open pit mine with excavator and dump truck'
+    ],
+    iamdog: [
+      'I Am Dog - First-person dog view of angry grandma with rolling pin in kitchen',
+      'I Am Dog - Dog paws reaching for mini basketball hoop on wall',
+      'I Am Dog - Dog exploring kitchen counter with food items and utensils',
+      'I Am Dog - Dog paws grabbing a toaster on kitchen counter'
+    ],
+    grocery: [
+      'Grocery Superstore - Low-poly open world city street with NPC characters at sunset',
+      'Grocery Superstore - Customers shopping in supermarket aisle with cheese and milk products',
+      'Grocery Superstore - Store shelf fully stocked with chips cereals and beverages',
+      'Grocery Superstore - Price setting UI showing egg buying price profit and competitive price'
+    ],
+    prison: [
+      'Prison Simulator - Prison yard fight between inmates and a guard with watchtower',
+      'Prison Simulator - Open prison yard with orange-suited inmates and guard on patrol',
+      'Prison Simulator - Guard counting inmates walking through cell block corridor',
+      'Prison Simulator - First-person guard using pepper spray on inmate in workshop room'
+    ],
+    badminton: [
+      'Badminton VR - Close-up of racket hitting shuttlecock on indoor court with crowd',
+      'Badminton VR - Player jumping smash shot over net with stadium crowd',
+      'Badminton VR - First-person VR view of serving shuttlecock against opponent at net',
+      'Badminton VR - Player in ready stance on court with scoreboard showing Player 01 vs 02'
+    ],
+    peopleplay: [
+      'People Playground - Two ragdoll figures sword fighting with light saber effect',
+      'People Playground - Ragdoll figure being shot by multiple guns with explosion effect',
+      'People Playground - Ragdoll falling into lava pit with skeleton destruction',
+      'People Playground - Ragdolls shooting laser beams at each other in sandbox environment'
+    ]
+  };
+  let currentGallery = null;
+  let currentIndex = 0;
+
+  function openLightbox(gallery, idx) {
+    currentGallery = gallery;
+    currentIndex = idx;
+    showLightboxImage();
+    document.getElementById('ss-lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox() {
+    document.getElementById('ss-lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function showLightboxImage() {
+    const imgs = galleries[currentGallery];
+    document.getElementById('ss-lightbox-img').src = imgs[currentIndex];
+    document.getElementById('ss-lightbox-img').alt = alts[currentGallery][currentIndex];
+    document.getElementById('ss-lightbox-counter').textContent = (currentIndex+1) + ' / ' + imgs.length;
+  }
+  function lightboxNext() {
+    currentIndex = (currentIndex + 1) % galleries[currentGallery].length;
+    showLightboxImage();
+  }
+  function lightboxPrev() {
+    currentIndex = (currentIndex - 1 + galleries[currentGallery].length) % galleries[currentGallery].length;
+    showLightboxImage();
+  }
+  document.getElementById('ss-lightbox').addEventListener('click', function(e) {
+    if (e.target === this) closeLightbox();
+  });
+  document.addEventListener('keydown', function(e) {
+    const lb = document.getElementById('ss-lightbox');
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowRight') lightboxNext();
+    if (e.key === 'ArrowLeft') lightboxPrev();
+  });
 </script>
 </body>
 </html>
