@@ -1829,7 +1829,7 @@
       </div>
     </div>
 
-    <!--10 — I Am Dog -->
+    <!-- 09b — I Am Dog -->
     <div class="project-card">
       <div class="project-num">10</div>
       <div class="project-tag">Unity · Casual</div>
@@ -1855,7 +1855,7 @@
       </div>
     </div>
 
-    <!-- 11 -->
+    <!-- 16 -->
     <div class="project-card">
       <div class="project-num">11</div>
       <div class="project-tag">Unity · Puzzle</div>
@@ -1880,7 +1880,12 @@
       </div>
     </div>
 
-    <!-- 12 — Lawn Mower Simulator -->
+    <!-- 16 -->
+    <div class="project-card">
+      <!-- Lawn Mower — inserted before People Playground -->
+    </div>
+
+    <!-- 10b — Lawn Mower Simulator -->
     <div class="project-card">
       <div class="project-num">12</div>
       <div class="project-tag">Unity · Simulation</div>
@@ -1906,7 +1911,7 @@
       </div>
     </div>
 
-    <!-- 13 -->
+    <!-- 16 -->
     <div class="project-card">
       <div class="project-num">13</div>
       <div class="project-tag">Unity · Sandbox</div>
@@ -1965,7 +1970,12 @@
   </div>
     </div>
 
-    <!-- 15 — Prison Simulator -->
+    <!-- 16 -->
+    <div class="project-card">
+      <!-- Prison Simulator — new project before Soil Classifier -->
+    </div>
+
+    <!-- 12b — Prison Simulator -->
     <div class="project-card">
       <div class="project-num">15</div>
       <div class="project-tag">Unity · Simulation</div>
@@ -2260,22 +2270,33 @@
       message:    this.querySelector('[name="message"]').value,
     };
 
-    emailjs.send('service_0vc3psr', 'template_2doyfam', templateParams)
-      .then(() => {
+    emailjs.send('service_0vc3psr', 'template_gvi4fvg', templateParams)
+      .then(function(response) {
+        console.log('EmailJS SUCCESS:', response.status, response.text);
         btn.textContent = '✓ Sent!';
         success.style.display = 'block';
-        this.reset();
+        document.getElementById('contactForm').reset();
         setTimeout(() => {
           btn.textContent = 'Send Message →';
           btn.disabled = false;
           success.style.display = 'none';
         }, 5000);
       })
-      .catch(() => {
+      .catch(function(err) {
+        console.error('EmailJS FAILED:', JSON.stringify(err));
         btn.textContent = 'Send Message →';
         btn.disabled = false;
-        error.style.display = 'block';
-        setTimeout(() => { error.style.display = 'none'; }, 5000);
+        // Show specific error message
+        const errorEl = document.getElementById('form-error');
+        let msg = '✗ Failed';
+        if (err && err.text) msg += ': ' + err.text;
+        else if (err && err.status) msg += ' (Status ' + err.status + ')';
+        errorEl.textContent = msg + ' — Email directly: usamashraf3@gmail.com';
+        errorEl.style.display = 'block';
+        setTimeout(() => {
+          errorEl.style.display = 'none';
+          errorEl.textContent = '✗ Something went wrong. Please try emailing me directly.';
+        }, 8000);
       });
   });
 
